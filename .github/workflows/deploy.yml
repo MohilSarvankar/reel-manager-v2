@@ -27,4 +27,4 @@ jobs:
         uses: jamesives/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist/reel-manager-v2
+          folder: dist/reel-manager-v2/browser
