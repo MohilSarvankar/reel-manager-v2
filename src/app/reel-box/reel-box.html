@@ -1,0 +1,9 @@
+<div class="box" (click)="handleClick()">
+    <h3>{{reel.movie}}</h3>
+    <div class="category">{{reel.category}}</div>
+    <p>{{reel.scene}}</p>
+    <div class="status"
+         [class.status-uploaded]="reel.status === 'Uploaded'"
+         [class.status-created]="reel.status === 'Created'"
+         [class.status-idea]="reel.status === 'Idea'">{{reel.status}}</div>
+</div>

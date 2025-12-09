@@ -1,0 +1,70 @@
+.box{
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    margin: 10px auto;
+    padding: 12px 60px 12px 16px;
+    border-radius: 14px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.box h3{
+    margin: 0 0 4px 0;
+    font-size: 1.05rem;
+    line-height: 1.2;
+    color: var(--text);
+}
+
+.box > div:first-of-type{
+    /* category: placed below movie title, muted */
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted);
+    display: block;
+    margin: -5px 0px;
+}
+
+.box p{
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.status{
+    /* status: top-right corner */
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 0.82rem;
+    padding: 6px 10px;
+    border-radius: 999px;
+    line-height: 1;
+    white-space: nowrap;
+    background: var(--status-bg);
+    color: var(--text); /* default color */
+    font-weight: 600;
+}
+
+/* Only change the font color per status */
+.status-uploaded{
+    color: var(--status-uploaded);
+}
+.status-created{
+    color: var(--status-created);
+}
+.status-idea{
+    color: var(--status-idea);
+}
+
+@media (min-width: 700px){
+    .box{
+        max-width: 700px;
+        padding: 14px 18px;
+    }
+}

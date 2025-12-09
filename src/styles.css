@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global dark theme variables and base styles */
+:root{
+	--bg: #0b1220; /* app background */
+	--surface: #0f1724; /* surfaces / panels */
+	--card-bg: #0f1724;
+	--text: #e6eef8; /* primary text */
+	--muted: rgba(230,238,248,0.65);
+	--subtle: rgba(230,238,248,0.45);
+	--border: rgba(255,255,255,0.06);
+	--card-border: rgba(255,255,255,0.06);
+	--card-shadow: 0 2px 10px rgba(2,6,23,0.6);
+	--status-bg: rgba(255,255,255,0.03);
+
+	--status-uploaded: #34d399; /* green */
+	--status-created: #f59e0b; /* amber */
+	--status-idea: #ef4444; /* red */
+}
+
+html,body{
+	height: 100%;
+}
+body{
+	margin: 0;
+	background: var(--bg);
+	color: var(--text);
+	font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Links, inputs, and other generic elements may inherit the theme */
+a{ color: inherit; }
+button,input,textarea{ color: var(--text); background: transparent; border-color: var(--border); }
+
+/* Store any other app-level overrides here */

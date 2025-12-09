@@ -1,0 +1,23 @@
+<div class="form-wrapper">
+    <div class="form-container">
+        <h2>Create New Reel</h2>
+        <form [formGroup]="reelForm" (ngSubmit)="handleSubmit()">
+            <input type="text" placeholder="Enter movie name" formControlName="movie">
+            <input type="text" placeholder="Enter category" formControlName="category">
+            <textarea placeholder="Describe the scene..." formControlName="scene"></textarea>
+            <select formControlName="status">
+                <option value="">Select status</option>
+                <option value="Idea">Idea</option>
+                <option value="Created">Created</option>
+                <option value="Uploaded">Uploaded</option>
+            </select>
+            
+            <div class="form-actions">
+                <button class="btn-primary" [disabled]="reelForm.invalid" type="submit">Save Reel</button>
+                @if(reelId){
+                    <button class="btn-danger" type="button" (click)="handleDelete()">Delete</button>
+                }
+            </div>
+        </form>
+    </div>
+</div>
