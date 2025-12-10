@@ -19,10 +19,15 @@ export class ReelList {
   isLoading: boolean = false;
   noReels: boolean = false;
   lastDoc: any = null;
+  currentStatus: string = 'All';
 
   ngOnInit(){
+    this.loadReels();
+  }
+
+  loadReels(){
     this.isLoading = true;
-    this.reelService.getReelsFirstPage(this.pageSize)
+    this.reelService.getReelsFirstPage(this.pageSize, this.currentStatus)
     .then((querySnapshot) => {
       this.reelList = querySnapshot.docs.map(doc => {
         return {
@@ -41,7 +46,7 @@ export class ReelList {
 
   loadMoreReels(){
     this.isLoading = true;
-    this.reelService.getReelsNextPage(this.lastDoc, this.pageSize)
+    this.reelService.getReelsNextPage(this.lastDoc, this.pageSize, this.currentStatus)
     .then((querySnapshot) => {
       const newReels = querySnapshot.docs.map(doc => {
         return {
@@ -63,5 +68,10 @@ export class ReelList {
       this.loadMoreReels();
     }
   }
-  
+
+  statusChangeHandle(event: Event){
+    const status = (event.target as HTMLInputElement).value;
+    this.currentStatus = status;
+    this.loadReels();
+  }
 }

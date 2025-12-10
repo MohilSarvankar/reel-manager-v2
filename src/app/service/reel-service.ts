@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, deleteDoc, doc, Firestore, getDocs, limit, orderBy, query, startAfter, updateDoc } from '@angular/fire/firestore';
+import { addDoc, collection, deleteDoc, doc, Firestore, getDocs, limit, orderBy, query, startAfter, updateDoc, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Reel } from '../models/reel';
 
@@ -10,18 +10,29 @@ export class ReelService {
 
   constructor(private firestore: Firestore) {}
 
-  getReelsFirstPage(limitCount: number) {
+  getReelsFirstPage(limitCount: number, status: string) {
     const reelsRef = collection(this.firestore, 'reels');
-    const q = query(reelsRef, orderBy('createdAt', 'desc'), limit(limitCount));
+    const constraints = [
+      ...(status !== 'All' ? [where('status', '==', status)] : []),
+      orderBy('createdAt', 'desc'),
+      limit(limitCount)
+    ];
+    const q = query(reelsRef, ...constraints);
     return getDocs(q);
   }
 
-  getReelsNextPage(lastDoc: any, limitCount: number) {
+  getReelsNextPage(lastDoc: any, limitCount: number, status: string) {
     const reelsRef = collection(this.firestore, 'reels');
     if (!lastDoc) {
-      return this.getReelsFirstPage(limitCount);
+      return this.getReelsFirstPage(limitCount, status);
     }
-    const q = query(reelsRef, orderBy('createdAt', 'desc'), startAfter(lastDoc), limit(limitCount));
+    const constraints = [
+      ...(status !== 'All' ? [where('status', '==', status)] : []),
+      orderBy('createdAt', 'desc'),
+      startAfter(lastDoc),
+      limit(limitCount)
+    ];
+    const q = query(reelsRef, ...constraints);
     return getDocs(q);
   }
 
