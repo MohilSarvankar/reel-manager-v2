@@ -15,7 +15,7 @@ export class ReelList {
   constructor(private reelService:ReelService){}
 
   reelList: Reel[] = [];
-  pageSize: number = 5;
+  pageSize: number = 10;
   isLoading: boolean = false;
   noReels: boolean = false;
   lastDoc: any = null;
