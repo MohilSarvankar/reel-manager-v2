@@ -7,7 +7,7 @@ nav{
 	align-items: center;
 	justify-content: space-between;
 	gap: 12px;
-	padding: 10px 16px;
+	padding: 12px 16px;
 	background: var(--surface);
 	border-bottom: 1px solid var(--border);
 }
@@ -15,7 +15,7 @@ nav{
 .logo{
 	font-weight: 700;
 	color: var(--text);
-	font-size: 1.1rem;
+	font-size: 1.3rem;
 	letter-spacing: 0.2px;
 }
 
@@ -31,7 +31,7 @@ nav ul{
 nav a{
 	color: var(--muted);
 	text-decoration: none;
-	padding: 8px 10px;
+	padding: 8px 5px;
 	border-radius: 8px;
 	transition: background 120ms ease, color 120ms ease;
 	font-weight: 600;
