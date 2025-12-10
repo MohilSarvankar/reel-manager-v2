@@ -25,6 +25,7 @@ export class ReelForm {
   });
 
   reelId: any = null;
+  disableButtons: boolean = false;
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -47,6 +48,7 @@ export class ReelForm {
   }
 
   handleSubmit() {
+    this.disableButtons = true;
     if (this.reelId) {
       this.reelService.modifyReel(this.reelId, this.reelForm.value)
         .then(() => {
@@ -72,6 +74,7 @@ export class ReelForm {
   }
 
   handleDelete() {
+    this.disableButtons = true;
     this.reelService.deleteReel(this.reelId)
       .then(() => {
         console.log('Reel deleted');

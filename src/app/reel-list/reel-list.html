@@ -1,3 +1,15 @@
-@for(reel of reelList; track reel.id) {
-    <app-reel-box [reel]="reel"></app-reel-box>
-}
+<div (scroll)="onScroll($event)" class="reel-list-container">
+    @for(reel of reelList; track reel.id) {
+        <app-reel-box [reel]="reel"></app-reel-box>
+    }
+    @if(noReels){
+        <div class="end-indicator">
+            No reels to load.
+        </div>
+    }
+    @else if(isLoading){
+        <div class="loading-indicator">
+            Loading more reels...  
+        </div>
+    }
+</div>

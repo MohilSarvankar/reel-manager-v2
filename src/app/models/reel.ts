@@ -4,4 +4,5 @@ export interface Reel {
   category: string;
   scene: string;
   status: 'Idea' | 'Created' | 'Uploaded';
+  createdAt: Date;
 }

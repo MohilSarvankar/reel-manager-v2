@@ -1,0 +1,83 @@
+.reel-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: calc(100vh - 60px);
+    background: var(--bg);
+    overflow-y: auto;
+}
+
+/* Loading indicator */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 16px;
+    color: var(--muted);
+    font-weight: 500;
+    text-align: center;
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* End indicator / No reels message */
+.end-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 16px;
+    color: var(--subtle);
+    font-size: 1rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-top: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .reel-list-container {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .loading-indicator,
+    .end-indicator {
+        padding: 20px 12px;
+        font-size: 0.9rem;
+    }
+
+    .end-indicator {
+        border-radius: 8px;
+    }
+}
+
+/* Scrollbar styling */
+.reel-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.reel-list-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.reel-list-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.reel-list-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}

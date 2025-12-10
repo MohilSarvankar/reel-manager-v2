@@ -1,6 +1,11 @@
 <div class="form-wrapper">
     <div class="form-container">
-        <h2>Create New Reel</h2>
+        @if(reelId){
+            <h2>Modify Reel</h2>
+        }
+        @else{
+            <h2>Create New Reel</h2>
+        }
         <form [formGroup]="reelForm" (ngSubmit)="handleSubmit()">
             <input type="text" placeholder="Enter movie name" formControlName="movie">
             <input type="text" placeholder="Enter category" formControlName="category">
@@ -13,9 +18,9 @@
             </select>
             
             <div class="form-actions">
-                <button class="btn-primary" [disabled]="reelForm.invalid" type="submit">Save Reel</button>
+                <button class="btn-primary" [disabled]="reelForm.invalid || disableButtons" type="submit">Save Reel</button>
                 @if(reelId){
-                    <button class="btn-danger" type="button" (click)="handleDelete()">Delete</button>
+                    <button class="btn-danger" type="button" [disabled]="disableButtons" (click)="handleDelete()">Delete</button>
                 }
             </div>
         </form>

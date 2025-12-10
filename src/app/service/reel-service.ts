@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, deleteDoc, doc, documentId, Firestore, updateDoc } from '@angular/fire/firestore';
+import { addDoc, collection, deleteDoc, doc, Firestore, getDocs, limit, orderBy, query, startAfter, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Reel } from '../models/reel';
 
@@ -10,12 +10,23 @@ export class ReelService {
 
   constructor(private firestore: Firestore) {}
 
-  getReels(): Observable<Reel[]> {
+  getReelsFirstPage(limitCount: number) {
     const reelsRef = collection(this.firestore, 'reels');
-    return collectionData(reelsRef, {idField: 'id'}) as Observable<any[]>;
+    const q = query(reelsRef, orderBy('createdAt', 'desc'), limit(limitCount));
+    return getDocs(q);
+  }
+
+  getReelsNextPage(lastDoc: any, limitCount: number) {
+    const reelsRef = collection(this.firestore, 'reels');
+    if (!lastDoc) {
+      return this.getReelsFirstPage(limitCount);
+    }
+    const q = query(reelsRef, orderBy('createdAt', 'desc'), startAfter(lastDoc), limit(limitCount));
+    return getDocs(q);
   }
 
   addReel(reel: any){
+    reel.createdAt = new Date();
     const reelsRef = collection(this.firestore, 'reels');
     return addDoc(reelsRef, reel);
   }
