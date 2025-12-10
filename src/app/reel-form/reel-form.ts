@@ -32,7 +32,7 @@ export class ReelForm {
       
       if (this.reelId) {
         this.route.queryParams.subscribe(queryParams => {
-          
+  
           this.reelForm.setValue({
             movie: queryParams['movie'] || '',
             category: queryParams['category'] || '',

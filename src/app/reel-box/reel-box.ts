@@ -1,14 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Reel } from '../models/reel';
 
 @Component({
   selector: 'app-reel-box',
   imports: [],
   templateUrl: './reel-box.html',
   styleUrl: './reel-box.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReelBox {
-  @Input() reel : any = {};
+  @Input() reel : Reel = null as any;
 
   constructor(private router: Router){}
 

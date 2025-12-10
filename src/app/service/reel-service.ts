@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { addDoc, collection, collectionData, deleteDoc, doc, documentId, Firestore, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Reel } from '../models/reel';
 
 @Injectable({
   providedIn: 'root',
@@ -9,13 +10,7 @@ export class ReelService {
 
   constructor(private firestore: Firestore) {}
 
-  list = [
-    { id: 1, movie: 'Inception', scene: 'Dream within a dream', category: 'Sci-Fi', status: 'Uploaded' },
-    { id: 2, movie: 'The Dark Knight', scene: 'Joker\'s bank heist', category: 'Action', status: 'Created' },
-    { id: 3, movie: 'Interstellar', scene: 'Docking sequence', category: 'Sci-Fi', status: 'Idea' }
-  ];
-
-  getReels(): Observable<any[]> {
+  getReels(): Observable<Reel[]> {
     const reelsRef = collection(this.firestore, 'reels');
     return collectionData(reelsRef, {idField: 'id'}) as Observable<any[]>;
   }
